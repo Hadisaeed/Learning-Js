@@ -85,4 +85,132 @@ var myNumberLiteral=22; // primitive number value, not an Object
 console.log(myNumber.constructor,myNumberLiteral.constructor);
 
 
+//no object is created when producing primitive values, no use of the "new" keyword
+
+
+var primitiveString1='string';
+var primitiveString2= String('string');
+
+
+//confrim the type of objects is not object
+
+console.log(typeof primitiveString1, typeof primitiveString2);
+
+
+// verus the usage of constructor and the new keyword for creating an object.
+
+var objString= new String('hadi');
+console.log(typeof objString);
+
+
+// how primitive values are stored/copy  in js
+
+
+
+var myStringValue1='BAR';  // create a primitive value 1
+var myStringCopy=myStringValue1; // copy its value into new variable
+
+console.log(myStringCopy);
+
+myStringValue1=null;  // manipulate the value stored in myStringvalue1
+console.log(myStringCopy,myStringValue1);
+
+
+// primitive values by value
+
+var price1=10;
+var price2=10;
+var price3= new Number(10); // creating a complex object because new keyword is used.
+var price4=price3;
+
+//log true
+console.log(price1==price2);
+
+//log false because price 3 contains a complex object and price 1 is a primitive values
+console.log(price1==price3);
+
+//log true because complex value are equal by reference, not a value
+
+console.log(price4==price3);
+
+price4=10;
+
+console.log(price3==price4);
+//log false becuase price 4 is  primitive rather than a complex.
+
+
+
+//how complex values are stored
+
+var myObj={};
+var copyOfMyObj=myObj; // not copied by value just reference.
+myObj.name='HS'; // manipulate the value stored in myObj
+
+console.log(myObj,copyOfMyObj);// they have a same property because they reference the same object
+
+
+//complex object are equal by reference
+
+
+var o1={property:'one'}
+var o2={property:'one'}
+
+console.log(o1===o2);
+console.log(o1==o2);
+
+//logs false because JS does not care that they are identical and of the same object type
+
+
+var objectA={property:1}
+var objectB=objectA;
+console.log(objectA===objectB);
+
+// log true because they are referenced by same Object.
+
+// complex object have dynamic property
+
+var ObjectC={property:"true"};
+var pointer1=ObjectC;
+var pointer2=pointer1;
+
+ObjectC.property=0; // update the Object c property and all reference(pointer1,pointer2) are updated
+
+console.log(ObjectC.property,pointer1.property,pointer2.property);
+
+
+var val1=null;
+console.log(typeof val1);
+
+// the constructor property also work on custom user-define function
+
+
+var customConstructor= function customConstructor(){return 'Wow'};
+var instanceOfCustomObject= new customConstructor();
+
+console.log(instanceOfCustomObject.constructor);
+console.log(instanceOfCustomObject.constructor===customConstructor);
+
+
+// an instance created from a constructor can have its own independent  properties
+
+var myArray = new Array();
+myArray.prop='test';
+console.log(myArray.prop);
+
+
+var myBoolean= new Boolean();
+myBoolean.prop='test1';
+console.log(myBoolean.prop);
+
+//instance properties do not work with primitive/literal values
+
+var stringA='hello';
+var numberOne=1;
+
+stringA.prop=true;
+numberOne.prop=true;
+
+console.log(stringA.prop,numberOne.prop);
+
+
 
